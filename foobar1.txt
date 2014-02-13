@@ -45,3 +45,9 @@ resg
 res
 ge
 sesgesr
+regs
+gesg
+es
+ge
+srgr
+esgesr
