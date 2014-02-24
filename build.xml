@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<project name="MyProject" default="hello">
+<project name="dcms-site-builder" default="build" basedir="." description="site builder for dcms sites">
+        <property file="src//build.properties"/>
+
+        <import file="src/build.xml" optional="True"/>
+        <import file="reference/defaults.xml" optional="True"/>
+
+        <taskdef name="sync" classname="phing.tasks.ext.FileSyncTask" />
+
+        <target name="build-init">
+                <echo msg='delete dir="site"'/>
+                <echo msg='exec command="cat reference/sync.exclude src/sync.exclude > sync.exclude" error="/dev/null"'/>
+        </target>
+        <target name="build-make" depends="build-init">
+                <echo msg='exec command="drush make reference/reference.make site" passthru="True" checkreturn="true"'/>
+        </target>
+        <target name="build-compile" depends="build-pre-compile">
+                <echo msg='sync sourcedir="src/" destinationdir="site" excludefile="sync.exclude"'/>
+        </target>
+        <target name="build" depends="build-init,build-make,build-pre-compile,build-compile,build-post-compile,build-verify">
+        </target>
+
+        <target name="test-init">
+                <echo msg='delete dir="tests"'/>
+                <echo msg='mkdir dir="tests"'/>
+                <echo msg='mkdir dir="testsite"'/>
+                <echo msg='sync sourcedir="site/" destinationdir="testsite" delete="true" checksum="true"'/>
+        </target>
+        <target name="test-platform-required" depends="test-init">
+        </target>
+        <target name="test" depends="test-init,test-platform-required,test-platform-optional,test-site-required,test-site-optional">
+        </target>
+
+	<target name="post-deploy-init">
+		<echo msg="post-deploy-init..."/>
+	</target>
+	<target name="post-deploy-platform-required" depends="post-deploy-init">
+		<echo msg="post-deploy-platform-required..."/>
+        </target>
+	<target name="post-deploy" depends="post-deploy-init,post-deploy-platform-required,post-deploy-optional,post-deploy-site-required,post-deploy-site-optional">
+        </target>
+
 
   <!-- ============================================  -->
   <!-- (DEFAULT)  Target: hello                      -->
@@ -16,5 +56,4 @@
   <target name="cheese" description="Expresses feelings about cheese">
     <echo msg="I like cheese" />
   </target>
-
 </project>
