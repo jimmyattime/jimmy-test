@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dcms-site-defaults" default="build" basedir="." description="default build tasks">
+   	<target name="build-pre-compile" depends="build-make">
+        </target>
+        <target name="build-post-compile" depends="build-compile">
+        </target>
+        <target name="build-verify" depends="build-post-compile">
+        </target>
+
+        <target name="test-platform-optional" depends="test-platform-required">
+        </target>
+        <target name="test-site-required" depends="test-platform-optional">
+        </target>
+        <target name="test-site-optional" depends="test-site-required">
+        </target>
+
+        <target name="post-deploy-platform-optional" depends="post-deploy-platform-required">
+        </target>
+        <target name="post-deploy-site-required" depends="post-deploy-platform-optional">
+        </target>
+        <target name="post-deploy-site-optional" depends="post-deploy-site-required">
+ 	</target>
+</project>

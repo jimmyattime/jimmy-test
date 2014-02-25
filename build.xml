@@ -5,7 +5,7 @@
 	<property name="post-deploy-single-hosts" environment="POST_DEPLOY_SINGLE_HOSTS">
 
         <import file="src/build.xml" optional="True"/>
-        <import file="reference/defaults.xml" optional="True"/>
+        <import file="defaults.xml" optional="True"/>
 
         <taskdef name="sync" classname="phing.tasks.ext.FileSyncTask" />
 
@@ -40,7 +40,7 @@
 	<target name="post-deploy-platform-required" depends="post-deploy-init">
 		<echo msg="post-deploy-platform-required..."/>
         </target>
-	<target name="post-deploy" depends="post-deploy-init,post-deploy-platform-required,post-deploy-optional,post-deploy-site-required,post-deploy-site-optional">
+	<target name="post-deploy" depends="post-deploy-init,post-deploy-platform-required,post-deploy-platform-optional,post-deploy-site-required,post-deploy-site-optional">
         </target>
 
 
