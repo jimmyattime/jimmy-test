@@ -2,7 +2,6 @@
 
 <project name="dcms-site-builder" default="build" basedir="." description="site builder for dcms sites">
         <property file="src//build.properties"/>
-	<property name="post-deploy-single-hosts" environment="POST_DEPLOY_SINGLE_HOSTS">
 
         <import file="src/build.xml" optional="True"/>
         <import file="defaults.xml" optional="True"/>
@@ -35,7 +34,9 @@
 
 	<target name="post-deploy-init">
 		<echo msg="post-deploy-init..."/>
-		<echo msg="post-deploy-single-hosts = ${post-deploy-single-hosts}"/>
+		<if><isset property="single_host_exec"/><then>
+			<echo msg="post-deploy-single-hosts = ${single_host_exec}"/>
+		</then></if>
 	</target>
 	<target name="post-deploy-platform-required" depends="post-deploy-init">
 		<echo msg="post-deploy-platform-required..."/>
