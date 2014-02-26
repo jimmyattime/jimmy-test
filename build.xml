@@ -51,5 +51,9 @@
 	</target>
 	<target name="post-deploy-all" depends="post-deploy-init-all,post-deploy-platform-required-all,post-deploy-platform-optional-all,post-deploy-site-required-all,post-deploy-site-optional-all">
         </target>
+
+	<!-- Phing tries to execute the targets in the depends attribute in the order they appear (from left to right) -->
+	<target name="post-deploy-single-all" depends="post-deploy-single,post-deploy-all">
+	</target>
 	<!-- End of Post Deploy Task -->
 </project>
