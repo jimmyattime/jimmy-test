@@ -14,10 +14,17 @@
         <target name="test-site-optional" depends="test-site-required">
         </target>
 
-        <target name="post-deploy-platform-optional" depends="post-deploy-platform-required">
+	<target name="post-deploy-platform-optional-single" depends="post-deploy-platform-required-single">
         </target>
-        <target name="post-deploy-site-required" depends="post-deploy-platform-optional">
+	<target name="post-deploy-site-required-single" depends="post-deploy-platform-optional-single">
         </target>
-        <target name="post-deploy-site-optional" depends="post-deploy-site-required">
+        <target name="post-deploy-site-optional-single" depends="post-deploy-site-required-single">	
+	</target>
+
+        <target name="post-deploy-platform-optional-all" depends="post-deploy-platform-required-all">
+        </target>
+        <target name="post-deploy-site-required-all" depends="post-deploy-platform-optional-all">
+        </target>
+        <target name="post-deploy-site-optional-all" depends="post-deploy-site-required-all">
  	</target>
 </project>

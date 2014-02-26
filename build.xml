@@ -32,31 +32,24 @@
         <target name="test" depends="test-init,test-platform-required,test-platform-optional,test-site-required,test-site-optional">
         </target>
 
-	<target name="post-deploy-init">
-		<echo msg="post-deploy-init..."/>
-		<if><isset property="single_host_exec"/><then>
-			<echo msg="post-deploy-single-hosts = ${single_host_exec}"/>
-		</then></if>
+        <!-- Start of Post Deploy Tasks -->
+	<target name="post-deploy-init-single">
+                <echo msg="post-deploy-init-SINGLE..."/>
+        </target>
+	 <target name="post-deploy-platform-required-single" depends="post-deploy-init-single">
+                <echo msg="post-deploy-platform-required-SINGLE..."/>
+        </target>
+
+	<target name="post-deploy-init-all">
+		<echo msg="post-deploy-init-ALL..."/>
 	</target>
-	<target name="post-deploy-platform-required" depends="post-deploy-init">
-		<echo msg="post-deploy-platform-required..."/>
-        </target>
-	<target name="post-deploy" depends="post-deploy-init,post-deploy-platform-required,post-deploy-platform-optional,post-deploy-site-required,post-deploy-site-optional">
+	<target name="post-deploy-platform-required-all" depends="post-deploy-init-all">
+		<echo msg="post-deploy-platform-required-ALL..."/>
         </target>
 
-
-  <!-- ============================================  -->
-  <!-- (DEFAULT)  Target: hello                      -->
-  <!-- ============================================  -->
-    <target name="hello" description="Says Hello">
-      <echo msg="Hello, world!" />
-    </target>
-
-  <!-- ============================================  -->
-  <!-- Target: cheese                                -->
-  <!-- ============================================  -->
-
-  <target name="cheese" description="Expresses feelings about cheese">
-    <echo msg="I like cheese" />
-  </target>
+	<target name="post-deploy-single" depends="post-deploy-init-single,post-deploy-platform-required-single,post-deploy-platform-optional-single,post-deploy-site-required-single,post-deploy-site-optional-single">
+	</target>
+	<target name="post-deploy-all" depends="post-deploy-init-all,post-deploy-platform-required-all,post-deploy-platform-optional-all,post-deploy-site-required-all,post-deploy-site-optional-all">
+        </target>
+	<!-- End of Post Deploy Task -->
 </project>
