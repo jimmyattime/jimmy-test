@@ -4,7 +4,7 @@
         <property file="src//build.properties"/>
 
         <import file="src/build.xml" optional="True"/>
-        <import file="defaults.xml" optional="True"/>
+        <import file="reference/defaults.xml" optional="True"/>
 
         <taskdef name="sync" classname="phing.tasks.ext.FileSyncTask" />
 
